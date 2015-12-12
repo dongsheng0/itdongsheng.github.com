@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+*{ padding:0; margin:0; line-height:100%;}
+body,h1,h2,h3,h4,h5,h6{ font-size:12px; font-family:Verdana, Geneva, sans-serif 'Microsoft Yahei';}
+ul,ol{ list-style:none;}
+a{ color:#000; text-decoration:none;}
+
+
+i,em{ font-style:normal;}
+b,strong{ font-weight:normal;}
+input,textarea{ outline:none; border: none;}
+img{ vertical-align:top; border:none;}
+
+
+.fl{ float:left; display:inline;}
+.fr{ float:right; display:inline;}
+.por{ position:relative;}
+.mt30{ margin-top:30px;}
+
+.clearfix:after{ display:block; content:''; clear:both;}
+.clearfix{ zoom:1;}
+

@@ -5,15 +5,22 @@
     <title>王东升个人作品站</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/commom.css">
+    <link rel="stylesheet" href="css/page2.css">
+    <script src="js/jquery-1.7.2.js"></script>
     <script src="js/commom.js"></script>  
-    <script src="js/index.js"></script> 
+    <script src="js/page2.js"></script> 
+
     <script>
-    
+      
+
+
+
     </script>
   </head>
   <body>
 
   <div class="page">
+  <!-- 导航条 -->
     <nav class="nav" id="nav">
       <ul class="clearfix">
         <li>首页</li>
@@ -23,6 +30,78 @@
         <li id="nav_bar"></li>
       </ul>
     </nav>
+  <!-- 轮播图 开始-->
+    <section class="banner_box"  >
+      <h2>轮播图</h2>
+      <h3>左右切换，无缝滚动效果</h3>
+      <div class="banner" id="banner">
+        <ul>
+            <li><img src="img/0.jpg" /></li>
+            <li><img src="img/1.jpg" /></li>
+            <li><img src="img/2.jpg" /></li>
+            <li><img src="img/3.jpg" /></li>
+            <li><img src="img/4.jpg" /></li>
+          </ul>
+          <ol>
+            <li class="on">0</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+          </ol>
+        <a href="javascript:;" class="prev">prev</a>
+          <a href="javascript:;" class="next">next</a>
+      </div>
+    </section>
+ <!--  轮播图结束 -->
+    <section class="box" id="box">
+      <h2>穿墙效果</h2>
+      <h3>点击进入，每一个都有作品</h3>
+      <ul class="fan" id="select">
+        <li><div class="div_box">点击进入</div></li>
+       <li><div class="div_box">点击进入</div></li>
+       <li><div class="div_box">点击进入</div></li>
+       <li><div class="div_box">点击进入</div></li>
+       <li><div class="div_box">点击进入</div></li>
+       <li><div class="div_box">点击进入</div></li>
+       <li><div class="div_box">点击进入</div></li>
+       <li><div class="div_box">点击进入</div></li>           
+      </ul>
+      <div class="first" >
+        <div id="box_first">
+          <p class="r"></p>
+          <p class="b"></p>
+          <p class="l"></p>
+          <p class="t"></p>
+          <span class="rb"></span>
+          <span class="rt"></span>
+          <span class="lt"></span>
+          <span class="lb"></span>
+        </div>
+        <i>关闭</i>
+      </div>
+      <div class="two">
+        
+      </div>
+    </section>
+    <!-- 手风琴开始 -->
+     <h2>手风琴</h2>
+    <section id="play" class="play">
+
+      <ul>
+        <li><img src="img/play/1.jpg" width="600"></li>
+        <li><img src="img/play/2.jpg" width="600"></li>
+        <li><img src="img/play/3.jpg" width="600"></li>
+        <li><img src="img/play/4.jpg" width="600"></li>
+        <li><img src="img/play/5.jpg" width="600"></li>
+        <li><img src="img/play/6.jpg" width="600"></li>
+        <li><img src="img/play/7.jpg" width="600"></li>
+        <li><img src="img/play/8.jpg" width="600"></li>
+        <li><img src="img/play/9.jpg" width="600"></li>
+        <li><img src="img/play/5.jpg" width="600"></li>
+      </ul>
+    </section>
+   <!-- 手风琴结束 -->
   </div>
     <!-- <section class="page-header">
       <h1 class="project-name">Itdongsheng.GitHub.com</h1>
@@ -64,6 +143,8 @@
     
     </section> -->
 
-  
+<div class="back_top" id="back_top">
+  返回顶部
+</div>
   </body>
 </html>

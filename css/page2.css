@@ -1,0 +1,76 @@
+/* 轮播图开始 */
+.banner{width:1000px;height:450px; position:relative; top:0; left:0; margin:30px auto; overflow:hidden;}
+.banner ul{position:absolute; top:0; left:0;}
+.banner ul li{float:left; width:1020px; height:450px;}
+.banner ul li img{width:100%;}
+.banner ol{width:250px;position:absolute; left:50%; bottom:20px; margin-left:-125px;}
+.banner ol li{width:30px; height:30px; background:#eee; border-radius:50%; float:left; text-indent:-99999px; margin:10px;}
+.banner ol li.on{background:#f90;}
+.banner a{position:absolute; top:50%; margin-top:-30px; width:80px; height:60px; background:rgba(0,0,0,0.5); font-size:20px; text-align:center; line-height:60px; color:#fff; text-decoration:none; display:none;}
+.banner .prev{left:0;}
+.banner .next{right:0;}
+.banner a:hover{background:blue;}
+/* 轮播图结束 */
+/* 图片墙部分开始*/
+.box{ width:100%; border:1px solid #000;}
+h2{ font-size:30px; height:30px; line-height:30px; color:#333;text-shadow:2px 2px 5px;}
+h3{font-size:20px; height:30px; line-height:30px; color:red; }
+.box ul{ width:1000px; margin:10px auto; overflow: hidden;}
+.box ul li{ width:230px; 
+			height: 230px; 
+			float:left; 
+			background: #fff; 
+			position:relative;
+			margin:5px;	
+			overflow: hidden;
+		}
+.box ul .div_box{ width:100%;
+			 height:230px; 
+			  background:rgba(0,0,0,0.5);
+			position:absolute; top:0; left:-230px; 
+			text-align: center;
+			line-height:230px; 
+			font-size:30px;
+			cursor:pointer;
+
+		}
+
+/* 图片墙部分结束 */
+/* 九宫格拖拽 开始*/
+.box .first{ width:1024px; height:900px; background:rgba(0,0,0,0.5); border:1px solid blue; 
+	position:fixed; left:50%; top:50px; margin-left:-512px; z-index: 3;
+
+	display:none;
+}
+#box_first{width:300px; height:300px; background:#ccc; position:absolute; top:100px; 
+
+	left:300px;  z-index: 4;}
+.box .first .t{width:100%; height:20px; background:yellow; position:absolute; top:0; left:0;}
+.box .first .b{width:100%; height:20px; background:yellow; position:absolute; bottom:0; left:0;}
+.box .first .l{width:20px; height:100%; background:yellow; position:absolute; top:0; left:0;}
+.box .first .r{width:20px; height:100%; background:yellow; position:absolute; top:0; right:0;}
+.box .first .rb{width:20px; height:20px; background:red; position:absolute; right:0; bottom:0;}
+.box .first .lt{width:20px; height:20px; background:red; position:absolute; left:0; top:0;}
+.box .first .lb{width:20px; height:20px; background:red; position:absolute; left:0; bottom:0;}
+.box .first .rt{width:20px; height:20px; background:red; position:absolute; right:0; top:0;}
+.box .first i{ width:100px; height:100px; text-indent: center; line-height:100px; 
+
+			position:absolute; right:0; top:0; font-size: 30px;box-shadow: 3px 4px 5px;
+			 background: #000; color:#fff;}
+/* 九宫格拖拽结束 */
+
+/* 猫开始 */
+.play{ width:900px; height:337px;  margin:20px auto;overflow: hidden; }
+.play ul{width:100%;height:100%; position: relative;}
+.play li{ width:900px; height:100%;position: absolute; left:0; top:0;}
+/* 猫结束 */
+
+
+
+
+
+
+
+
+
+
