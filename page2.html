@@ -19,16 +19,27 @@
   </head>
   <body>
 
-  <div class="page">
+  <div class="page" id="page">
   <!-- 导航条 -->
     <nav class="nav" id="nav">
-      <ul class="clearfix">
-        <li>首页</li>
-        <li><a href="javascript:;">js作品页</a></li>
-        <li><a href="javascript:;">html5作品页</a></li>
-        <li><a href="javascript:;">手机端作品页</a></li>
-        <li id="nav_bar"></li>
+      <ul class="time" id="time">
+        <li><img src="img/num.png" /></li>
+        <li><img src="img/num.png" /></li>
+          <li>:</li>
+        <li><img src="img/num.png" /></li>
+        <li><img src="img/num.png" /></li>
+          <li>:</li>
+        <li><img src="img/num.png" /></li>
+        <li><img src="img/num.png" /></li>
       </ul>
+
+    <ul class="clearfix nav_right">
+       <li><a href="http://itdongsheng.github.io">首页</a></li>
+       <li><a href="http://itdongsheng.github.io/page2.html">js作品页</a></li>
+       <li><a href="javascript:;">html5作品页</a></li>
+       <li><a href="javascript:;">手机端作品页</a></li>
+       <li id="nav_bar"></li>
+     </ul>
     </nav>
   <!-- 轮播图 开始-->
     <section class="banner_box"  >
@@ -52,42 +63,74 @@
         <a href="javascript:;" class="prev">prev</a>
           <a href="javascript:;" class="next">next</a>
       </div>
-    </section>
+    </section> 
  <!--  轮播图结束 -->
     <section class="box" id="box">
       <h2>穿墙效果</h2>
       <h3>点击进入，每一个都有作品</h3>
-      <ul class="fan" id="select">
-        <li><div class="div_box">点击进入</div></li>
-       <li><div class="div_box">点击进入</div></li>
-       <li><div class="div_box">点击进入</div></li>
-       <li><div class="div_box">点击进入</div></li>
-       <li><div class="div_box">点击进入</div></li>
-       <li><div class="div_box">点击进入</div></li>
-       <li><div class="div_box">点击进入</div></li>
-       <li><div class="div_box">点击进入</div></li>           
+      <ul id="select">
+         <li><div class="div_box">点击进入</div></li>
+         <li><div class="div_box">点击进入</div></li>
+         <li><div class="div_box">点击进入</div></li>
+         <li><div class="div_box">点击进入</div></li>
+         <li><div class="div_box">点击进入</div></li>
+         <li><div class="div_box">点击进入</div></li>
+         <li><div class="div_box">点击进入</div></li>
+         <li><div class="div_box">点击进入</div></li>   
+         <li><div class="div_box">点击进入</div></li>          
+        </ul>
+      <!-- 九宫格开始 -->
+      <ul id="in_more">
+        <li class="first more">
+          <div id="box_first">
+            <p class="r"></p>
+            <p class="b"></p>
+            <p class="l"></p>
+            <p class="t"></p>
+            <span class="rb"></span>
+            <span class="rt"></span>
+            <span class="lt"></span>
+            <span class="lb"></span>
+          </div>
+          <i>关闭</i>
+        </li>
+        <li class="more">
+          <i>关闭</i>
+        </li>
+        <li class="more">
+          <i>关闭</i>
+        </li>
+        <li class="more">
+          <i>关闭</i>
+        </li>
+        <li class="more">
+          <i>关闭</i>
+        </li>
+        <li class="more">
+          <i>关闭</i>
+        </li>
+        <li class="more">
+          <i>关闭</i>
+        </li>
+         <li class="more">
+          <i>关闭</i>
+        </li>
+        <li class="more">
+          <i>关闭</i>
+        </li>
       </ul>
-      <div class="first" >
-        <div id="box_first">
-          <p class="r"></p>
-          <p class="b"></p>
-          <p class="l"></p>
-          <p class="t"></p>
-          <span class="rb"></span>
-          <span class="rt"></span>
-          <span class="lt"></span>
-          <span class="lb"></span>
-        </div>
-        <i>关闭</i>
-      </div>
-      <div class="two">
-        
-      </div>
+       
+          
+     
+      <!-- 九宫格结束 -->
+     <!--  无限下拉开始 -->
+    
+      
     </section>
     <!-- 手风琴开始 -->
-     <h2>手风琴</h2>
-    <section id="play" class="play">
-
+         <h2>手风琴</h2>
+         <section id="play" class="play">
+     
       <ul>
         <li><img src="img/play/1.jpg" width="600"></li>
         <li><img src="img/play/2.jpg" width="600"></li>
@@ -100,8 +143,49 @@
         <li><img src="img/play/9.jpg" width="600"></li>
         <li><img src="img/play/5.jpg" width="600"></li>
       </ul>
-    </section>
+         </section> 
    <!-- 手风琴结束 -->
+   <!-- 汽车左右拖动开始 -->
+   
+  <section class="car" id="car">
+      <h2>
+        左右拖动
+      </h2>     
+      <h3>按下鼠标左右拖动</h3>
+      <ul>
+        <li><img src="img/car/1.jpg" height="180" width="260" alt=""></li>
+        <li><img src="img/car/2.jpg" height="180" width="260" alt=""></li>
+        <li><img src="img/car/3.jpg" height="180" width="260" alt=""></li>
+        <li><img src="img/car/4.jpg" height="180" width="260" alt=""></li>
+        <li><img src="img/car/5.jpg" height="180" width="260" alt=""></li>
+   
+   
+      </ul>
+   </section> 
+   <!-- 汽车左右拖动结束 -->
+   <!-- 分页收回开始 -->
+    <section class="serve" id="serve"> 
+     <h2>分页收回</h2>
+     <h3>连续点击按钮</h3>
+      <p>点击</p>
+     <ul>
+       <li>1</li>
+       <li>2</li>
+       <li>3</li>
+       <li>4</li>
+       <li>5</li>
+       <li>7</li>
+       <li>6</li>
+       <li>8</li>
+       <li>9</li>
+       
+   
+     </ul>
+   
+   </section> 
+    <!-- 分页收回结束 -->
+
+   
   </div>
     <!-- <section class="page-header">
       <h1 class="project-name">Itdongsheng.GitHub.com</h1>

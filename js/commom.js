@@ -7,6 +7,18 @@ function addEvent(obj,sEv,fn){
     obj.attachEvent('on'+sEv,fn);
   }
 }
+//toDouble
+function toDou(iNum){
+  return iNum<10?'0'+iNum:''+iNum;
+}
+//n,m随机数
+function rnd(n,m){
+  return parseInt(n+Math.random()*(m-n));
+}
+//弧度转角度
+function a2d(n){
+    return n*180/Math.PI;
+  }
 //getByClass
 function getByClass(obj,sClass){
   if(obj.getElementsByClassName){
@@ -117,12 +129,31 @@ function getByClass(obj,sClass){
         })();
 
 addEvent(window,'load',function(){
+
+    //顶部时间
+    ;(function(){
+      var oTime=document.getElementById('time');
+      var aImg = oTime.getElementsByTagName('img');
+      function tick(){
+        var oDate = new Date();
+        var h = oDate.getHours();
+        var m = oDate.getMinutes();
+        var s = oDate.getSeconds();
+        var str = toDou(h)+toDou(m)+toDou(s);
+        for(var i=0;i<aImg.length;i++){
+          //aImg[i].style.top=-35*str.charAt(i)+'px';
+          startMove(aImg[i],{top:-35*str.charAt(i)},{time:300});
+        }
+      }
+      tick();
+      setInterval(tick,1000);
+    })();
   	//nav导航条
     ;(function(){
       var oNav=document.getElementById('nav');
       var oBar = document.getElementById('nav_bar');
       
-      var oUl= oNav.children[0];
+      var oUl= oNav.children[1];
       var aLi=oUl.children;
       var iNow = 0;
 

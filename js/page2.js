@@ -1,6 +1,6 @@
 'use strict';
 addEvent(window,'load',function(){
-
+var oPage=document.getElementById('page');
 /* 轮播图*/
 ;(function(){
 	var oBox=document.getElementById('banner');
@@ -84,70 +84,84 @@ addEvent(window,'load',function(){
 })();
 /* -------------------------------------------*/ 
 //穿墙
+	var scrollT=0;
+	var scrollL=0;
+		addEvent(window,'scroll',function(){
+			scrollT=document.documentElement.scrollTop||document.body.scrollTop;
+			scrollL=document.documentElement.scrollLeft||document.body.scrollLeft;
+		});
+
+
 var oSelect=document.getElementById('select');
 ;(function(){
-  //弧度转角
-  function a2d(n){
-    return n*180/Math.PI;
+  
+  var oBox=document.getElementById('box');
+  function getTop(obj){
+  	var offSet=obj.offsetTop;
+  	if(obj.offsetParent!=null) offSet+=getTop(obj.offsetParent);
+  	return offSet;
   }
+  function getLeft(obj){ 
+	var offset=obj.offsetLeft; 
+	if(obj.offsetParent!=null) offset+=getLeft(obj.offsetParent); 
+	return offset; 
+	} 
   function hoverDir(obj,oEvent){
-    var x=obj.offsetLeft+obj.offsetWidth/2-oEvent.clientX;
-    var y=obj.offsetTop+obj.offsetHeight/2-oEvent.clientY;
-    return Math.round((a2d(Math.atan2(y,x))+180)/90)%4;
+    var x = getLeft(obj)+obj.offsetWidth/2-scrollL-oEvent.clientX;  
+	var y = getTop(obj)+obj.offsetHeight/2-scrollT-oEvent.clientY;
+	
+	return Math.round((a2d(Math.atan2(y,x))+180)/90)%4;
   }
-  function hoverGo(obj){
-    var oDiv=obj.children[0];
-    obj.onmouseover=function(ev){
-      var oEvent = ev||event;
-      var oFrom = oEvent.fromElement||oEvent.relatedTarget;
-      if(obj.contains(oFrom))return;
-      var dir=hoverDir(obj,oEvent);
-	      switch(dir){
-	      case 0:
-	        oDiv.style.left='230px';
-	        oDiv.style.top=0;
-	        break;
-	        case 1:
-	        oDiv.style.left = 0;
-	        oDiv.style.top = '230px';
-	        break;
-	      case 2:
-	        oDiv.style.left = '-230px';
-	        oDiv.style.top = 0;
-	        break;
-	      case 3:
-	        oDiv.style.left = 0;
-	        oDiv.style.top = '-230px';
-	        break;
-
-	      }
-	      startMove(oDiv,{left:0,top:0});
-    };
-
-    obj.onmouseout=function(ev){
-    	var oEvent=ev||event;
-    	var oTo = oEvent.toElement||oEvent.relatedTarget;
-		if(obj.contains(oTo))return; 
-		var dir=hoverDir(obj,oEvent);
+ function hoverGo(obj){
+	//这个函数里面，var oS
+	var oS = obj.children[0];
+	obj.onmouseover=function(ev){
+		var oEvent = ev||event;
+		var oFrom = oEvent.fromElement||oEvent.relatedTarget;
+		if(obj.contains(oFrom))return;
+		var dir = hoverDir(obj,oEvent);//这里直接参数是oEvent，
 		switch(dir){
-			case 0:
-				startMove(oDiv,{left:230,top:0});
+			case 0:  //注意这里的是数字，而不是字符串，不需要加单引号
+				oS.style.left = '230px';  //这里的上移直接就是字符串了
+				oS.style.top = 0;
 				break;
 			case 1:
-				startMove(oDiv,{left:0,top:230});
+				oS.style.left = 0;
+				oS.style.top = '230px';
 				break;
 			case 2:
-				startMove(oDiv,{left:-230,top:0});
+				oS.style.left = '-230px';
+				oS.style.top = 0;
 				break;
 			case 3:
-				startMove(oDiv,{left:0,top:-230});
+				oS.style.left = 0;
+				oS.style.top = '-230px';
 				break;
 		}
-    };
-   
-  
-    
-  }
+		startMove(oS,{top:0,left:0});  //注意逻辑，判断完方向以后就是运动
+	};
+	obj.onmouseout=function(ev){
+		var oEvent = ev||event;
+		var oTo = oEvent.toElement||oEvent.relatedTarget;
+		if(obj.contains(oTo))return;  //处理onmouse的bug问题注意格式，死记住啊
+		var dir = hoverDir(obj,oEvent);
+		
+		switch(dir){
+			case 0:
+				startMove(oS,{left:230,top:0});
+				break;
+			case 1:
+				startMove(oS,{left:0,top:230});
+				break;
+			case 2:
+				startMove(oS,{left:-230,top:0});
+				break;
+			case 3:
+				startMove(oS,{left:0,top:-230});
+				break;
+		}
+	};
+}
 
 
   
@@ -222,18 +236,30 @@ var oSelect=document.getElementById('select');
 
 
 })();
+/*-------------------------*/
+/*无限下拉菜单*/
+
 /*----------------------------------*/
 ;(function(){
-	var oBox=document.getElementById('box');
 	var aDiv=oSelect.getElementsByTagName('div');
-	var oFirst=getByClass(oBox,'first')[0];
-	var oFirstClose=oFirst.getElementsByTagName('i')[0];
-	aDiv[0].onclick=function(){
-		oFirst.style.display='block';
-	};
-	oFirstClose.onclick=function(){
-		oFirst.style.display='none';
-	};
+	var oInmore=document.getElementById('in_more');
+	var aLi=oInmore.children;
+
+	for(var i=0;i<aDiv.length;i++){
+		aDiv[i].index=i;
+		aDiv[i].onclick=function(){
+			for(var i=0;i<aDiv.length;i++){
+				aLi[i].style.display='none';
+			}		
+
+			aLi[this.index].style.display='block';
+			var oI=aLi[this.index].getElementsByTagName('i')[0];
+
+			oI.onclick=function(){
+				this.offsetParent.style.display='none';
+			};
+		}
+	}
 })();
 /*---------------------------------------*/
 /*猫*/
@@ -272,5 +298,112 @@ var oSelect=document.getElementById('select');
 
 	})();
 /*---------------------------*/
+/*汽车左右拖拽开始*/
+;(function(){
+	var oCar=document.getElementById('car');
+	var oUl=oCar.getElementsByTagName('ul')[0];
+	var aLi=oUl.children;
+	var aImg=oUl.getElementsByTagName('img');
+	var w=aLi[0].offsetWidth;
+
+	var divC=oCar.offsetWidth/2;
+
+	oUl.style.width=aLi.length*w+'px';
+	oUl.onmousedown=function(ev){
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oUl.offsetLeft;
+		document.onmousemove=function(ev){
+			var oEvent=ev||event;
+			var l=oEvent.clientX-disX;
+			if(l>divC-(0+0.5)*w){
+				l=divC-(0+0.5)*w;
+			}else if(l<divC-(aLi.length-1+0.5)*w){
+				l=divC-(aLi.length-1+0.5)*w;
+			}
+			oUl.style.left=l+'px';
+			changeSize();
+		};
+		document.onmouseup=function(){
+			document.onmouseup=null;
+			document.onmousemove=null;
+			oUl.releaseCapture&&oUl.releaseCapture()
+		};
+		return false;
+		oUl.setCapture&&oUl.setCapture();
+
+	};
+	function changeSize(){
+		for(var i=0;i<aLi.length;i++){
+			var l = Math.abs(divC-(oUl.offsetLeft+aLi[i].offsetLeft+aLi[i].offsetWidth/2));
+			var scale = 1-l/500;
+			if(scale<0.5)scale=0.5;
+			aImg[i].style.width=scale*520+'px';
+			aImg[i].style.height=scale*360+'px';
+			aImg[i].style.marginLeft=-(aImg[i].offsetWidth-260)/2+'px';
+			aImg[i].style.marginTop=-(aImg[i].offsetHeight-180)/2+'px';
+			aLi[i].style.zIndex=scale*100000;
+		}
+	}
+
+})();
+/*汽车左右拖拽结束*/
+/*分页开始*/
+;(function(){
+	var oServe=document.getElementById('serve');
+	var oBtn=oServe.getElementsByTagName('p')[0];
+	var aLi=oServe.getElementsByTagName('li');
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].style.background='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
+	}
+	//布局转换
+	var aPos = [];
+	for(var i=0;i<aLi.length;i++){
+		aPos.push({t:aLi[i].offsetTop,l:aLi[i].offsetLeft});
+	}
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].style.left = aPos[i].l+'px';
+		aLi[i].style.top = aPos[i].t+'px';
+		aLi[i].style.position='absolute';
+		aLi[i].style.margin=0;
+	}
+	
+	var timer = null;
+	var bOk = false;                 //开关，开始是假的
+	oBtn.onclick=function(){
+		if(bOk)return ;				//真的返回，不继续往下执行
+		bOk=true;					//为的就是快速连续点击，，继续执行，
+		var i = 0;
+		timer = setInterval(function(){
+			(function(index){
+				startMove(aLi[i],{left:0,top:0,width:0,height:0,opacity:0},{end:function(){
+					if(index==aLi.length-1){
+						//放出来。
+						i = aLi.length-1;
+						timer = setInterval(function(){
+							(function(index){
+								aLi[index].style.background='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
+								startMove(aLi[index],{left:aPos[index].l,top:aPos[index].t,width:150,height:150,opacity:1},{end:function(){
+									if(index==0){
+										bOk=false;       //执行完一遍后，最后变成假的 这个开关判断诗写在第二个执行完毕的函数end里
+									}
+								}});
+							})(i);
+							i--;
+							if(i==-1){
+								clearInterval(timer);
+							}
+						},100);
+					}
+				}});
+			})(i);
+			i++;
+			if(i==aLi.length){
+				clearInterval(timer);
+				//alert('over'); 不行
+			}
+		},100);
+	};
+})();
+/*分页结束*/
 
 });
