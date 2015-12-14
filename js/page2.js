@@ -740,4 +740,43 @@ var oSelect=document.getElementById('select');
 })();
 /*分页结束*/
 
+;(function(){
+	var oPen=document.getElementById('open');
+	
+	var oS=oPen.children[1];
+	var oClose=oPen.children[2];
+	var bOk=true;
+	var count=3;
+		
+		if(bOk){
+			oPen.style.display='block';
+			var timer=setInterval(function(){
+				count--;
+				oS.innerHTML=count;
+				if(count==0){
+					oPen.style.display='none';
+					clearInterval(timer);
+					bOk=false;
+				}
+			},1000);
+		}
+		
+
+	oClose.onclick=function(){
+		oPen.style.display='none';
+	}
+	
+})();
+
 });
+
+
+
+
+
+
+
+
+
+
+
