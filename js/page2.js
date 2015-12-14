@@ -220,26 +220,357 @@ var oSelect=document.getElementById('select');
 		var oEvent = ev||event;
 		var disX = oEvent.clientX-oBox.offsetLeft;
 		var disY = oEvent.clientY-oBox.offsetTop;
-		document.onmousemove=function(ev){
+		
+		function fnMove(ev){
 			var oEvent = ev||event;
 			oBox.style.left = oEvent.clientX-disX+'px';
 			oBox.style.top = oEvent.clientY-disY+'px';
-		};
-		document.onmouseup=function(){
-			document.onmousemove=null;
-			document.onmouseup=null;
-			oBox.releaseCapture&&oBox.releaseCapture();
-		};
-		oBox.setCapture&&oBox.setCapture();
-		return false;
+		}
+
+		function fnUp(){
+				removeEvent(document,'mousemove',fnMove);
+				removeEvent(document,'mouseup',fnUp);
+		}
+		addEvent(document,'mousemove',fnMove);
+		addEvent(document,'mouseup',fnUp);
+		oEvent.preventDefault();
 	};
 
 
 })();
 /*-------------------------*/
-/*无限下拉菜单*/
+/*3d拖拽*/
+;(function(){
+	var oUC = document.getElementById('ul_container');
+	var aLi = oUC.children;
+	var x = 0;
+	var y = 0;
+	document.onmousedown=function(ev){
+		var oEvent = ev||event;
+		var disX = oEvent.clientX-x;
+		var disY = oEvent.clientY-y;
+		document.onmousemove=function(ev){
+			var oEvent = ev||event;
+			x = oEvent.clientX-disX;
+			y = oEvent.clientY-disY;
+			
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].style.marginLeft=x*aLi[i].style.zIndex/20+'px';
+				aLi[i].style.marginTop=y*aLi[i].style.zIndex/20+'px';
+			}
+		};
+		document.onmouseup=function(){
+			document.onmousemove=null;
+			document.onmouseup=null;
+			document.releaseCapture&&document.releaseCapture();
+		};
+		document.setCapture&&document.setCapture();
+		return false;
+	};
+})();
 
 /*----------------------------------*/
+/*圆的拖拽*/
+	
+
+;(function(){
+
+	var oCircle=document.getElementById('circle');
+	var oDrag=getByClass(oCircle,'drag_four')[0];
+	var oMove=getByClass(oCircle,'move_four')[0];
+	var oBar=oDrag.children[0];
+	var oStrong=oDrag.children[1];
+	var oS=oMove.getElementsByTagName('span')[0];	
+
+	var R=201;
+
+	oBar.onmousedown=function(ev){
+			var oEvent=ev||event;
+			var disX=oEvent.clientX-oBar.offsetLeft;
+			//var disY=oEvent.clientY-oBar.offsetTop;
+			function fnMove(ev){
+				var oEvent=ev||event;
+				var l=oEvent.clientX-disX;
+				//var t=oEvent.clientY-disY;
+
+				if(l<0){
+					l=0;
+				}else if(l>oDrag.offsetWidth-oBar.offsetWidth){
+					l=oDrag.offsetWidth-oBar.offsetWidth
+				}
+				var scal=l/(oDrag.offsetWidth-oBar.offsetWidth);
+				oStrong.innerHTML=parseInt(scal*100)+'%';
+				oBar.style.left=l+'px';
+				//oBar.style.top=t+'px';
+				var l2=R+Math.sin(scal*360*Math.PI/180)*R;
+				var t2=R-Math.cos(scal*360*Math.PI/180)*R;
+
+				oS.style.left=l2+'px';
+				oS.style.top=t2+'px';
+			}
+			function fnUp(ev){
+				
+				removeEvent(document,'mousemove',fnMove);
+				removeEvent(document,'mouseup',fnUp);
+			}
+			addEvent(document,'mousemove',fnMove);
+			addEvent(document,'mouseup',fnUp);
+			oEvent.preventDefault;
+	};
+
+})();
+/*------------------*/
+/*放大镜*/
+;(function(){
+	var oS = document.getElementById('s');
+	var oB = document.getElementById('b');
+	var oM = document.getElementById('m');
+	var oImg = oB.children[0];
+	oS.onmouseover=function(){
+		oM.style.display='block';
+		oB.style.display='block';
+	};
+	oS.onmouseout=function(){
+		oM.style.display='none';
+		oB.style.display='none';
+	};
+	oS.onmousemove=function(ev){
+		var oEvent = ev||event;
+		var l = oEvent.clientX-getLeft(oS)-oM.offsetWidth/2;
+		var t = oEvent.clientY-getTop(oS)-oM.offsetHeight/2;
+		if(l<0){
+			l=0;
+		}else if(l>oS.offsetWidth-oM.offsetWidth){
+			l=oS.offsetWidth-oM.offsetWidth;
+		}
+		if(t<0){
+			t=0;
+		}else if(t>oS.offsetHeight-oM.offsetHeight){
+			t=oS.offsetHeight-oM.offsetHeight;
+		}
+		oM.style.left = l+'px';
+		oM.style.top = t+'px';
+		oImg.style.left = -l/(oS.offsetWidth-oM.offsetWidth)*(oImg.offsetWidth-oB.offsetWidth)+'px';
+		oImg.style.top = -t/(oS.offsetHeight-oM.offsetHeight)*(oImg.offsetHeight-oB.offsetHeight)+'px';
+	};
+})();
+/*---------------------*/
+/*拍卖倒计时*/
+;(function(){
+
+	var oBox = document.getElementById('count');
+	var oP = oBox.getElementsByTagName('p')[0];
+	var oSpan = oBox.getElementsByTagName('span')[0];
+	var aStatus = ['即将拍卖','正在拍卖'];
+	var aTime = [5,360];
+	var startTime = aTime[0]+1;
+	var timer = null;
+	oP.innerHTML=aStatus[0];
+	function countDown(){
+		startTime--;
+		var m = parseInt(startTime/60);
+		var s = startTime%60;
+		
+		oSpan.innerHTML=toDou(m)+':'+toDou(s);
+		if(startTime==0){
+			clearInterval(timer);
+			oP.innerHTML=aStatus[1];
+			var startTime2 = aTime[1]+1;
+			setInterval(function(){
+				startTime2--;
+				var m = parseInt(startTime2/60);
+				var s = startTime2%60;
+				oSpan.innerHTML=toDou(m)+':'+toDou(s);
+				
+			},1000);
+		}
+	}
+	countDown();
+	timer = setInterval(countDown,1000);
+})();
+
+/*滚轮*/
+;(function(){
+	var oDiv=document.getElementById('pig');
+	var oImg=oDiv.children[0];
+	addWheel(oDiv,function(dir,oEvent){
+		var scaleX = (oEvent.clientX-oImg.offsetLeft)/oImg.offsetWidth;
+		var scaleY = (oEvent.clientY-oImg.offsetTop)/oImg.offsetHeight;
+		if(dir){
+			//放大
+			oImg.style.width=oImg.offsetWidth+10+'px';
+			oImg.style.height=oImg.offsetHeight+10+'px';
+		}else{
+			//缩小
+			oImg.style.width=oImg.offsetWidth-10+'px';
+			oImg.style.height=oImg.offsetHeight-10+'px';
+		}
+		oImg.style.left = oEvent.clientX-scaleX*oImg.offsetWidth+'px';
+		oImg.style.top = oEvent.clientY-scaleY*oImg.offsetHeight+'px';
+		
+		
+		
+	});
+})();
+/*-----------------------*/
+/*右键各种操作*/
+;(function(){
+	var oContentMenu=document.getElementById('content_menu');
+	var oM=document.getElementById('menu');
+	var aP=oContentMenu.getElementsByTagName('p');
+	var aItem=oM.children;
+	var oNow=null;
+	for(var i=0;i<aP.length;i++){
+		aP[i].oncontextmenu=function(ev){
+
+			var oEvent=ev||event;
+			oNow=this;
+			oM.style.left=oEvent.clientX+'px';
+			oM.style.top=oEvent.clientY+'px';
+
+			oM.style.display='block';
+			return false;
+		}
+
+	}
+	document.onclick=function(){
+		oM.style.display='none';
+	};
+	for(var i=0;i<aItem.length;i++){
+		aItem[i].onmouseover=function(){
+			this.style.background='blue';
+		};
+		aItem[i].onmouseout=function(){
+			this.style.background='#f1f1f1';
+		};
+		aItem[0].onclick=function(){
+		window.location.reload();
+	};
+	aItem[1].onclick=function(){
+		oNow.parentNode.removeChild(oNow);
+	};
+	aItem[2].onclick=function(){
+		oNow.style.background='red';
+	};
+	aItem[3].onclick=function(){
+		oNow.style.background='green';
+	};
+	aItem[4].onclick=function(){
+		oNow.style.background='pink';
+	};
+	}
+})();
+/*-------------------*/
+/*无限运动的小球*/
+
+;(function(){
+
+	var oBall=document.getElementById('ball');
+	var oBox=oBall.children[1];
+
+	var iSpeedX = 0;
+	var iSpeedY = 0;
+	var lastX = 0;      //定义lastX=0；
+	var lastY = 0;
+	var timer = null;
+	
+	oBox.onmousedown=function(ev){
+
+		clearInterval(timer);
+		var oEvent = ev||event;
+		var disX = oEvent.clientX-oBox.offsetLeft;
+		var disY = oEvent.clientY-oBox.offsetTop;
+		
+
+		function fnMove(ev){
+
+			var oEvent =ev||event;
+			oBox.style.left = oEvent.clientX-disX+'px';
+			oBox.style.top = oEvent.clientY-disY+'px';
+			iSpeedX = oEvent.clientX-lastX;        //move的时候，获得速度，速度就是鼠标移动的时候，坐标减去坐标
+			iSpeedY = oEvent.clientY-lastY;
+			lastX = oEvent.clientX;				//然后再把当前的坐标给了 lastX,lastY
+			lastY = oEvent.clientY;
+		}
+		function fnUp(){
+			move();
+			removeEvent(document,'mousemove',fnMove);
+			removeEvent(document,'mouseup',fnUp);
+		}
+		addEvent(document,'mousemove',fnMove);
+		addEvent(document,'mouseup',fnUp);
+		oEvent.preventDefault();
+	};
+	
+	
+	
+	
+	
+	function move(){
+		clearInterval(timer);
+		timer = setInterval(function(){
+			iSpeedY+=3;          //只有clientY,这也是日常道理，重力的作用
+			var l = oBox.offsetLeft+iSpeedX;
+			var t = oBox.offsetTop+iSpeedY;
+			if(t>=document.documentElement.clientHeight-oBox.offsetHeight){
+				t=document.documentElement.clientHeight-oBox.offsetHeight;
+				iSpeedY*=-0.8;
+				iSpeedX*=0.8;
+			}
+			if(t<0){
+				t=0;
+				iSpeedY*=-0.8;
+				iSpeedX*=0.8;
+			}
+			if(l>=document.documentElement.clientWidth-oBox.offsetWidth){
+				l=document.documentElement.clientWidth-oBox.offsetWidth;
+				iSpeedX*=-0.8;
+				iSpeedY*=0.8;
+			}
+			if(l<0){
+				l=0;
+				iSpeedX*=-0.8;
+				iSpeedY*=0.8;
+			}
+			oBox.style.left = l+'px';
+			oBox.style.top = t+'px';
+			if(Math.abs(iSpeedX)<1)iSpeedX=0;
+			if(Math.abs(iSpeedY)<1)iSpeedY=0;
+			if(iSpeedX==0&&iSpeedY==0&&t==document.documentElement.clientHeight-oBox.offsetHeight){
+				clearInterval(timer);
+			}
+		},30);
+
+	}
+
+})();
+
+/*苹果菜单拖拽*/
+;(function(){
+	var oPhone=document.getElementById('phone');
+	var aImg=oPhone.children;
+	addEvent(document,'mousemove',function(ev){
+
+		var oEvent = ev||event;
+		for(var i=0;i<aImg.length;i++){
+
+			var a = oPhone.offsetLeft+aImg[i].offsetLeft+aImg[i].offsetWidth/2-oEvent.clientX;
+			var b = oPhone.offsetTop+aImg[i].offsetTop+aImg[i].offsetHeight/2-oEvent.clientY;
+			var c = Math.sqrt(a*a+b*b);
+			var scale = 1-c/500
+			if(scale<0.5)scale=0.5;
+			
+			aImg[i].width=scale*128;
+		}
+	})
+	
+
+})();
+
+/*-----------------------------*/
+/*倒计时*/
+
+/*九个穿墙的点击*/
 ;(function(){
 	var aDiv=oSelect.getElementsByTagName('div');
 	var oInmore=document.getElementById('in_more');
@@ -312,7 +643,10 @@ var oSelect=document.getElementById('select');
 	oUl.onmousedown=function(ev){
 		var oEvent=ev||event;
 		var disX=oEvent.clientX-oUl.offsetLeft;
-		document.onmousemove=function(ev){
+		
+		
+
+		function fnMove(ev){
 			var oEvent=ev||event;
 			var l=oEvent.clientX-disX;
 			if(l>divC-(0+0.5)*w){
@@ -322,14 +656,14 @@ var oSelect=document.getElementById('select');
 			}
 			oUl.style.left=l+'px';
 			changeSize();
-		};
-		document.onmouseup=function(){
-			document.onmouseup=null;
-			document.onmousemove=null;
-			oUl.releaseCapture&&oUl.releaseCapture()
-		};
-		return false;
-		oUl.setCapture&&oUl.setCapture();
+		}
+		function fnUp(){
+				removeEvent(document,'mousemove',fnMove);
+				removeEvent(document,'mouseup',fnUp);
+		}
+		addEvent(document,'mousemove',fnMove);
+		addEvent(document,'mouseup',fnUp);
+		oEvent.preventDefault();
 
 	};
 	function changeSize(){

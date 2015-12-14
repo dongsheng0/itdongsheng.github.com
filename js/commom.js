@@ -7,6 +7,13 @@ function addEvent(obj,sEv,fn){
     obj.attachEvent('on'+sEv,fn);
   }
 }
+function removeEvent(obj,sEv,fn){
+  if(obj.removeEventListener){
+    obj.removeEventListener(sEv,fn,false);
+  }else{
+    obj.detachEvent('on'+sEv,fn);
+  }
+}
 //toDouble
 function toDou(iNum){
   return iNum<10?'0'+iNum:''+iNum;
@@ -19,6 +26,16 @@ function rnd(n,m){
 function a2d(n){
     return n*180/Math.PI;
   }
+function getTop(obj){
+    var offSet=obj.offsetTop;
+    if(obj.offsetParent!=null) offSet+=getTop(obj.offsetParent);
+    return offSet;
+}
+function getLeft(obj){ 
+    var offset=obj.offsetLeft; 
+    if(obj.offsetParent!=null) offset+=getLeft(obj.offsetParent); 
+    return offset; 
+} 
 //getByClass
 function getByClass(obj,sClass){
   if(obj.getElementsByClassName){
@@ -33,6 +50,25 @@ function getByClass(obj,sClass){
       }
     }
     return aResult;                           //注意3、最终返回的都是数组，是一组标签
+  }
+}
+/*鼠标滚轮*/
+function addWheel(obj,fn){
+  function fnWheel(ev){
+    var oEvent = ev||event;
+    var bOk = true;
+    bOk = oEvent.wheelDelta?oEvent.wheelDelta<0:oEvent.detail>0;
+  
+    fn&&fn(bOk,oEvent);
+    oEvent.preventDefault&&oEvent.preventDefault();
+    return false;
+  }
+  //是不是火狐
+  if(window.navigator.userAgent.indexOf('Firefox')!=-1){
+    //火狐
+    addEvent(obj,'DOMMouseScroll',fnWheel);
+  }else{
+    addEvent(obj,'mousewheel',fnWheel);
   }
 }
 //弹性碰撞的封装
@@ -156,15 +192,19 @@ addEvent(window,'load',function(){
       var oUl= oNav.children[1];
       var aLi=oUl.children;
       var iNow = 0;
-
+      var oA=aLi[iNow].children[0];
+           oA.style.color='#000';
+      
       for(var i=0;i<aLi.length-1;i++){
 
         aLi[i].onmouseover=function(){
+          
           //oBar.style.left = this.offsetLeft+'px';
           move1(oBar,this.offsetLeft-20);
-        
+          
         };
         aLi[i].onmouseout=function(){
+
 
           move1(oBar,aLi[iNow].offsetLeft-20);
         };
@@ -173,6 +213,7 @@ addEvent(window,'load',function(){
         (function(index){
           aLi[i].onclick=function(){
             iNow = index;
+            oA.style.color='#000';
           };
         })(i);
       }

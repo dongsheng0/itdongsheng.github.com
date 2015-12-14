@@ -1,4 +1,6 @@
 /* 轮播图开始 */
+
+.banner_box{ margin-top:90px; border-top:none;}
 .banner{width:1000px;height:450px; position:relative; top:0; left:0; margin:30px auto; 
 	overflow:hidden;}
 .banner ul{position:absolute; top:0; left:0;}
@@ -18,22 +20,28 @@
 .banner a:hover{background:blue;}
 /* 轮播图结束 */
 /* 图片墙部分开始*/
-.box{ width:100%; border:1px solid #000;}
+section{ margin-top:50px; border-top:3px dashed #000;}
+.box{ width:100%; margin-top:3px dashed #000;}
 h2{ font-size:30px; height:30px; line-height:30px; color:#333;
 	        text-shadow:2px 2px 5px;}
 h3{font-size:20px; height:30px; line-height:30px; color:red; }
 #select{ overflow:hidden; width:750px; margin:50px auto;}
 #select li{ width:230px; height:230px; 
 			background:#ccc; 
-			font-size:30px; 
+			font-size:20px; 
+			text-align: center;
+
 			font-weight:bold; 
-			line-height:230px; 
+			line-height:100px; 
 			overflow:hidden; 
 			float:left; 
 			margin:6px; 
 			position:relative; top:0; left:0;
 		}
 #select div{ position:absolute; top:0; 
+	color:blue;
+
+			font-size: 30px;
 			left:-230px; 
 			width:100%; height:100%; 
 			text-align: center;
@@ -44,11 +52,18 @@ h3{font-size:20px; height:30px; line-height:30px; color:red; }
 
 /* 图片墙部分结束 */
 /* 九宫格拖拽 开始*/
- .box .more{ width:1024px; height:900px; background:rgba(0,0,0,0.5); border:1px solid blue; 
+ .box .more{ width:1024px; height:900px; background:rgba(0,0,0,0.3); border:1px solid blue; 
 	position:fixed; left:50%; top:50px; margin-left:-512px; z-index: 3;
-
+	text-align: center;
 	display:none;
 }
+
+
+
+#in_more  i{ width:100px; height:100px; text-align:center; line-height:100px; 
+
+			position:absolute; right:0; top:0; font-size: 30px;box-shadow: 3px 4px 5px;
+			 background: #000; color:#fff;cursor: pointer;}
 #box_first{width:300px; height:300px; background:#ccc; position:absolute; top:100px; 
 
 	left:300px;  z-index: 4;}
@@ -61,19 +76,92 @@ h3{font-size:20px; height:30px; line-height:30px; color:red; }
 .box .first .lt{width:20px; height:20px; background:red; position:absolute; left:0; top:0;}
 .box .first .lb{width:20px; height:20px; background:red; position:absolute; left:0; bottom:0;}
 .box .first .rt{width:20px; height:20px; background:red; position:absolute; right:0; top:0;}
-#in_more  i{ width:100px; height:100px; text-align:center; line-height:100px; 
 
-			position:absolute; right:0; top:0; font-size: 30px;box-shadow: 3px 4px 5px;
-			 background: #000; color:#fff;cursor: pointer;}
 /*九宫格拖拽结束 */
-/* 无限下拉开始 */
+/*3d拖拽开始 */
+#in_more .two ul{ width: 800px; height: 500px; border: 1px solid #333; background: #05090e; 
+	overflow: hidden; position: fixed; left:50%; margin-left:-400px; margin-top:50px; }
+#in_more .two li{position: absolute; list-style: none; }
 
-/* 无限下拉结束 */
+#in_more .two .pic1 { top: 210px; left: 550px; }
+#in_more .two .pic2 { top: 290px; left: 430px; }
+#in_more .two .pic3 { top: 215px; left: 220px; }
+#in_more .two .pic4 { top: 150px; left: 100px;  }
+#in_more .two .pic6 { top: 290px; left: 80px;  }
+#in_more .two .pic7 { top: 120px; left: 480px;  }
+#in_more .two .pic8 { top: 60px; left: 380px;  }
+#in_more .two .pic5 { top: -40px; left: -50px; width: 1422px; height: 1000px; 
+	background: url(../images/bg.jpg) no-repeat; }
+/*3d拖拽结束 */
+/*苹果菜单拖拽开始*/
+#phone { width:800px; height:667px; 
+	background: url(../img/phone/mac.png);
+	position:relative; left:0; top:0; 
+	text-align:center;
+	margin:0 auto;
+	}
+#phone img{ margin-top:300px;}
+/*苹果菜单拖拽结束*/
+/*圆的拖拽开始*/
+		#circle{ width:500px; margin:50px auto; _border:1px solid red;}
+		h4{ font-size: 20px; color:#000; line-height:30px;}
+		#circle .drag_four{ width:500px; height:30px; background: #eee; position:relative;}
+		#circle .bar_four{ width:40px; height:100%; background: yellow;
+				 position: absolute; left:0; top:0;}
+		#circle strong{ font-size: 15px;}		 
+		#circle .move_four{ width:400px; height:400px; border: 1px solid #000; border-radius:50%;
+		 		margin-top:40px; position:relative;}
+		#circle .move_four span{ width:50px; height:50px; border-radius:50%;
+		 		background: red; position:absolute;left:50%; top:-0px;
+		 		margin-left:-25px; margin-top:-25px;}
+/*圆的拖拽结束*/
+/*倒计时开始*/
 
+/*倒计时结束*/
+/* 放大镜开始 */
+#move_big{ width:800px; margin:50px auto;}
+#move_big div{float:left; margin:20px; width:350px; height:350px;}
+#s{position:relative; top:0; left:0;}
+#m{position:absolute; top:0; left:0; width:100px; height:100px; background:yellow; opacity:0.5; filter:alpha(opacity:50); display:none;}
+#b{overflow:hidden; position:relative; top:0; left:0; display:none;}
+#b img{position:absolute; top:0; left:0;}
+/* 放大镜结束*/
+/* 拍卖倒计时开始 */
+h4{ margin-top:50px; color:#fff;
+ font-size: 23px;font-style: italic; 
+	line-height: 30px;
+ display: inline-block;}
+#count{width:300px; height:200px; border:1px dashed #000;  background: red;
+	position:absolute; top:100px; left:50%; margin-left:-150px; }
+#count p{position:absolute; top:0; right:0; width:100px; height:50px; 
+	background:#f90; text-align:center;line-height:50px;}
+#count span{position:absolute; bottom:0; left:0; width:100%; 
+	font-size: 19px;
+	height:50px; 
+	text-align:center; line-height:50px;}
+
+/* 拍卖倒计时结束 */
+
+/* 鼠标滚动放大 */
+
+#pig{ width:100%; height:100%; position: relative;}
+#pig img{ position:absolute; left:300px; top:200px;}
+
+/*弹性小球 */
+#ball div{ width:130px; height:130px; border-radius:50%; 
+	background: url(../img/ball.jpg) no-repeat; position: absolute; left:300px; top:200px;}
+/* 右键菜单 */
+#content_menu{ width:300px; background: -webkit-linear-gradient('#eaa2a2',blue); 
+			margin:50px auto;}
+#content_menu p{ padding:5px 10px; background:yellow; 
+	margin:5px; font-size: 18px; text-align: left;}
+#menu{width:200px; overflow:hidden; position:absolute; top:0; left:0; display:none;}
+#menu li{width:100%; height:30px; line-height:30px; text-align:center; 
+	background:#f1f1f1; border-bottom:1px dashed #ccc; }
 
 
 /* 猫开始 */
-.play{ width:900px; height:337px;  margin:20px auto;overflow: hidden; }
+.play{ width:900px; height:337px;  margin:50px auto;overflow: hidden; }
 .play ul{width:100%;height:100%; position: relative;}
 .play li{ width:900px; height:100%;position: absolute; left:0; top:0;}
 /* 猫结束 */
@@ -93,7 +181,7 @@ h3{font-size:20px; height:30px; line-height:30px; color:red; }
 
 /* car左右拖拽结束*/
 /*  分页收回开始*/
- .serve{ width:100%; height:600px;position: relative;}
+.serve{ width:100%; height:600px;position: relative; }
 .serve p{width:60px; 
 		height:40px;
 		line-height:40px; 
