@@ -26,6 +26,9 @@ function rnd(n,m){
 function a2d(n){
     return n*180/Math.PI;
   }
+function d2a(n){
+  return n*Math.PI/180;
+}
 function getTop(obj){
     var offSet=obj.offsetTop;
     if(obj.offsetParent!=null) offSet+=getTop(obj.offsetParent);

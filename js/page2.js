@@ -1,5 +1,38 @@
 'use strict';
+/*;(function(){
+	addEvent(window,'DOMContentLoaded',function(){
+		var oDiv=document.createElement('div');
+		oDiv.innerHTML='<p>此页面图片较多，请耐心等待<strong>(3s自动关闭)</strong></p><span>3</span><i>关闭</i>';
+		document.body.insertBefore(oDiv,1);
+		var count=3;
+		var oS=oDiv.children[1];
+		var oClose=oDiv.children[2];
+		var timer=setInterval(function(){
+				count--;
+				oS.innerHTML=count;
+				if(count==0){
+					oDiv.style.display='none';
+					clearInterval(timer);
+					bOk=false;
+				}
+			},1000);
+
+		oClose.onclick=function(){
+		oPen.style.display='none';
+	}
+	
+	});
+
+
+
+		
+
+	
+})();*/
+
 addEvent(window,'load',function(){
+
+
 var oPage=document.getElementById('page');
 /* 轮播图*/
 ;(function(){
@@ -740,33 +773,7 @@ var oSelect=document.getElementById('select');
 })();
 /*分页结束*/
 
-;(function(){
-	var oPen=document.getElementById('open');
-	
-	var oS=oPen.children[1];
-	var oClose=oPen.children[2];
-	var bOk=true;
-	var count=3;
-		
-		if(bOk){
-			oPen.style.display='block';
-			var timer=setInterval(function(){
-				count--;
-				oS.innerHTML=count;
-				if(count==0){
-					oPen.style.display='none';
-					clearInterval(timer);
-					bOk=false;
-				}
-			},1000);
-		}
-		
 
-	oClose.onclick=function(){
-		oPen.style.display='none';
-	}
-	
-})();
 
 });
 

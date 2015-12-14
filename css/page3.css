@@ -1,0 +1,104 @@
+
+
+#banner{ border-top:none; margin-top:100px; width:100%;}
+h2{ width:400px; height:30px;  font-size: 25px; }
+h3{ width:700px; height:30px; font-size: 20px; color:red;}
+#banner div{width:80px; height:35px; 
+			text-align:center; line-height:35px; 
+			background:#ccc; margin:10px auto; 
+			box-shadow:2px 2px 5px black; 
+			cursor:pointer;
+
+			
+		}
+#banner div:active{box-shadow:inset 2px 2px 5px black;}
+
+#banner ul{ width:480px; height:260px; margin:80px auto 0px; position:relative;}
+#banner  ul li{width:480px;height:260px;
+				-webkit-transform:perspective(800px) translateX(0px) rotate(0deg); 
+				opacity:0; position:absolute; top:0; left:0; 
+				-webkit-transition:1s all ease;
+				cursor: pointer;
+			}
+#banner  ul li.l2{-webkit-transform:perspective(800px) translateX(-300px) rotateY(40deg); 
+					opacity:0; z-index:1;}
+#banner  ul li.l1{-webkit-transform:perspective(800px) translateX(-250px) rotateY(40deg); 
+					opacity:1; z-index:2;}
+#banner ul li.cur{-webkit-transform:perspective(800px) translateX(0px) rotateY(0deg); 
+					opacity:1; z-index:3;}
+#banner ul li.r1{-webkit-transform:perspective(800px) translateX(250px) rotateY(-40deg);
+					opacity:1; z-index:2;}
+
+
+#banner ul li.r2{-webkit-transform:perspective(800px) translateX(300px) rotateY(-40deg); 
+				opacity:0; z-index:1;}
+
+/* 3d_立方体 */
+#box_3d{ margin-top:60px;}
+section{ border-top:3px dashed #000; padding-top:60px;}
+#box_3d .box{ width:300px; height:300px; position: relative; left:0; top:0; margin:100px auto;
+			-webkit-transform-style:preserve-3d;
+			-webkit-transform:perspective(800px) rotateX(45deg) rotateY(45deg);
+			
+		}	
+#box_3d .box span{ width:100%; height:100%; position:absolute; left:0; top:0; border:1px solid #000;  text-align:center; line-height:298px; font-size:50px; font-style:bold;}
+#box_3d .left{background: red;  -webkit-transform:translateX(150px) rotateY(90deg);}
+#box_3d .right{background: #786; -webkit-transform:translateX(-150px) rotateY(-90deg);}
+#box_3d .top{background: #356; -webkit-transform:translateY(150px) rotateX(90deg);}
+#box_3d .bottom{background:blue; -webkit-transform:translateY(-150px) rotateX(-90deg);}
+#box_3d .front{background: #345; -webkit-transform:translateZ(150px) rotateY(0deg);}
+#box_3d .back{ background: pink;-webkit-transform:translateZ(-150px) rotateY(0deg) scale(-1,1);}
+
+/* 图片爆炸 */
+#boom{ width:100%; }
+#boom div{ width:700px; height:400px; 
+	background: url(../img/boom/1.jpg) no-repeat; margin:0 auto; position: relative;}
+#boom div span{ position: absolute; background: url(../img/boom/1.jpg) no-repeat;}
+#boom ul{ width:700px; height:30px; margin:10px auto; position: relative;}
+#boom ul li{ width:100px; height:40px;
+			text-align: center;
+
+		 	line-height:40px; font-size: 20px;
+			 background:-webkit-linear-gradient(#036,#03C); 
+			 box-shadow:inset 0 0 10px #fff,0 10px 1px #000; 
+			 -webkit-transition:0.2s all ease;
+			 position:absolute;
+			 top:0;
+			
+		 }
+#boom ul li.first{ left:0;}
+#boom ul li.two{ left:200px;}
+#boom ul li.three{ left:400px;}
+
+#boom ul li:hover{box-shadow:inset 0 0 20px #fff,0 10px 1px #000;}
+#boom ul li:active{box-shadow:inset 0 0 20px #fff,0 1px 1px #000;top:9px;} 
+
+
+#c1{margin:50px auto;width:100%; height:600px;  }
+#c1 div{ text-align: center;}
+#c1 canvas{ background: #fff; border:1px solid #000; margin-top:20px;}
+
+--------------
+/* svg饼图 */
+#s1{ width:100%;}
+#s1  div{ width:100%; margin:0 auto; text-align: center;}
+#s1 div svg{background:#fff;}
+
+/* 屏保 */
+/* ----------- */
+#c2{ width:100%;}
+#c2 div{ width:100%; margin-top:30px; }
+#c2 canvas{ background: #000;}
+
+
+
+
+
+
+
+
+
+
+
+
+
