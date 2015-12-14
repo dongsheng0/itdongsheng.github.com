@@ -286,7 +286,7 @@ addEvent(window,'load',function(){
 				aPoint[i].x=0;
 				aPoint[i].speedX*=-1;
 			}
-			alert(oPage.offsetLeft);
+			
 			if(aPoint[i].x>=(oPage.offsetWidth)){
 				aPoint[i].x=oPage.offsetWidth;
 				aPoint[i].speedX*=-1;
