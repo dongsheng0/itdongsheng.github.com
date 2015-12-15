@@ -16,21 +16,35 @@ h3{ width:700px; height:30px; font-size: 20px; color:red;}
 #banner ul{ width:480px; height:260px; margin:80px auto 0px; position:relative;}
 #banner  ul li{width:480px;height:260px;
 				-webkit-transform:perspective(800px) translateX(0px) rotate(0deg); 
+				-moz-transform:perspective(800px) translateX(0px) rotate(0deg); 
+				transform:perspective(800px) translateX(0px) rotate(0deg); 
 				opacity:0; position:absolute; top:0; left:0; 
 				-webkit-transition:1s all ease;
+				-moz-transition:1s all ease;
+				transition:1s all ease;
 				cursor: pointer;
 			}
 #banner  ul li.l2{-webkit-transform:perspective(800px) translateX(-300px) rotateY(40deg); 
+	-moz-transform:perspective(800px) translateX(-300px) rotateY(40deg); 
+	transform:perspective(800px) translateX(-300px) rotateY(40deg); 
 					opacity:0; z-index:1;}
 #banner  ul li.l1{-webkit-transform:perspective(800px) translateX(-250px) rotateY(40deg); 
+	-moz-transform:perspective(800px) translateX(-250px) rotateY(40deg); 
+	transform:perspective(800px) translateX(-250px) rotateY(40deg); 
 					opacity:1; z-index:2;}
-#banner ul li.cur{-webkit-transform:perspective(800px) translateX(0px) rotateY(0deg); 
+#banner ul li.cur{-webkit-transform:perspective(800px) translateX(0px) rotateY(0deg);
+				-moz-transform:perspective(800px) translateX(0px) rotateY(0deg); 
+				transform:perspective(800px) translateX(0px) rotateY(0deg);  
 					opacity:1; z-index:3;}
 #banner ul li.r1{-webkit-transform:perspective(800px) translateX(250px) rotateY(-40deg);
+			-moz-transform:perspective(800px) translateX(250px) rotateY(-40deg);
+			transform:perspective(800px) translateX(250px) rotateY(-40deg);
 					opacity:1; z-index:2;}
 
 
 #banner ul li.r2{-webkit-transform:perspective(800px) translateX(300px) rotateY(-40deg); 
+			   -moz-transform:perspective(800px) translateX(300px) rotateY(-40deg); 
+				transform:perspective(800px) translateX(300px) rotateY(-40deg); 
 				opacity:0; z-index:1;}
 
 /* 3d_立方体 */
@@ -38,16 +52,35 @@ h3{ width:700px; height:30px; font-size: 20px; color:red;}
 section{ border-top:3px dashed #000; padding-top:60px;}
 #box_3d .box{ width:300px; height:300px; position: relative; left:0; top:0; margin:100px auto;
 			-webkit-transform-style:preserve-3d;
+
+			-moz-transform-style:preserve-3d;
+				transform-style:preserve-3d;
 			-webkit-transform:perspective(800px) rotateX(45deg) rotateY(45deg);
+			-moz-transform:perspective(800px) rotateX(45deg) rotateY(45deg);
+
+				transform:perspective(800px) rotateX(45deg) rotateY(45deg);
+
 			
 		}	
 #box_3d .box span{ width:100%; height:100%; position:absolute; left:0; top:0; border:1px solid #000;  text-align:center; line-height:298px; font-size:50px; font-style:bold;}
-#box_3d .left{background: red;  -webkit-transform:translateX(150px) rotateY(90deg);}
-#box_3d .right{background: #786; -webkit-transform:translateX(-150px) rotateY(-90deg);}
-#box_3d .top{background: #356; -webkit-transform:translateY(150px) rotateX(90deg);}
-#box_3d .bottom{background:blue; -webkit-transform:translateY(-150px) rotateX(-90deg);}
-#box_3d .front{background: #345; -webkit-transform:translateZ(150px) rotateY(0deg);}
-#box_3d .back{ background: pink;-webkit-transform:translateZ(-150px) rotateY(0deg) scale(-1,1);}
+#box_3d .left{background: red;  -webkit-transform:translateX(150px) rotateY(90deg);
+-moz-transform:translateX(150px) rotateY(90deg);
+transform:translateX(150px) rotateY(90deg);}
+#box_3d .right{background: #786; -webkit-transform:translateX(-150px) rotateY(-90deg);
+-moz-transform:translateX(-150px) rotateY(-90deg);
+transform:translateX(-150px) rotateY(-90deg);}
+#box_3d .top{background: #356; -webkit-transform:translateY(150px) rotateX(90deg);
+-moz-transform:translateY(150px) rotateX(90deg);
+transform:translateY(150px) rotateX(90deg);}
+#box_3d .bottom{background:blue; -webkit-transform:translateY(-150px) rotateX(-90deg);
+-moz-transform:translateY(-150px) rotateX(-90deg);
+transform:translateY(-150px) rotateX(-90deg);}
+#box_3d .front{background: #345; -webkit-transform:translateZ(150px) rotateY(0deg);
+-moz-transform:translateZ(150px) rotateY(0deg);
+transform:translateZ(150px) rotateY(0deg);}
+#box_3d .back{ background: pink;-webkit-transform:translateZ(-150px) rotateY(0deg) scale(-1,1);
+-moz-transform:translateZ(-150px) rotateY(0deg) scale(-1,1);
+transform:translateZ(-150px) rotateY(0deg) scale(-1,1);}
 
 /* 图片爆炸 */
 #boom{ width:100%; }

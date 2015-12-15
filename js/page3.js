@@ -43,6 +43,8 @@ addEvent(window,'load',function(){
 				x=ev.clientY-disY;
 				y=ev.clientX-disX;
 				oBox.style.WebkitTransform='perspective(800px) rotateY('+y/5+'deg) rotateX('+x/5+'deg)';
+				oBox.style.MozTransform='perspective(800px) rotateY('+y/5+'deg) rotateX('+x/5+'deg)';
+				oBox.style.transform='perspective(800px) rotateY('+y/5+'deg) rotateX('+x/5+'deg)';
 			}
 			function fnUp(){
 				removeEvent(document,'mousemove',fnMove);
@@ -75,18 +77,26 @@ addEvent(window,'load',function(){
 			if(left){
 				y-=3;
 				oBox.style.WebkitTransform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
+				oBox.style.MozTransform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
+				oBox.style.transform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
 			}
 			if(right){
 				y+=3;
 				oBox.style.WebkitTransform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
+				oBox.style.MozTransform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
+				oBox.style.transform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
 			}
 			if(top){
 				x+=3;
 				oBox.style.WebkitTransform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
+				oBox.style.MozTransform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
+				oBox.style.transform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
 			}
 			if(bottom){
 				x-=3;
 				oBox.style.WebkitTransform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
+				oBox.style.MozTransform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
+				oBox.style.transform='perspective(800px) rotateX('+x/5+'deg) rotateY('+y/5+'deg)';
 			}
 		},16);
 		addEvent(document,'keyup',function(ev){
