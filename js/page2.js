@@ -32,6 +32,7 @@
 
 addEvent(window,'load',function(){
 
+nav(1);
 
 var oPage=document.getElementById('page');
 /* 轮播图*/

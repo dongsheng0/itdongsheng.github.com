@@ -1,6 +1,7 @@
 'use strict';
 
 addEvent(window,'load',function(){
+	nav(2);
 	var oPage=document.getElementById('page');
 	;(function(){
 		var oBanner=document.getElementById('banner');
@@ -368,7 +369,76 @@ addEvent(window,'load',function(){
 
 })();
 
+/*视频*/
+;(function(){
+	function time2min(time){
+		var sMin = parseInt(time/60);
+		var sSec = parseInt(time%60);
+		return toDou(sMin)+':'+toDou(sSec);
+	}  
+	var oBtn = document.querySelector('#btn1');
+	var oBtn2 = document.querySelector('#btn2');
+	var oBtn3 = document.querySelector('#btn3');
+	var oBarBox = document.getElementById('bar_box');
+	var oBar = document.getElementById('bar');
+	var oBarBtn = document.getElementById('bar_btn');
+	var oS = document.querySelector('p');
+	var oV = document.querySelector('video');
 
+
+	/*oV.addEvent('canplaythrough',function(){
+		
+	});*/
+	oV.addEventListener('canplaythrough',function(){
+		oS.innerHTML='00:00/'+time2min(oV.duration);
+	},false);
+	
+	oBtn.onclick=function(){
+		oV.play();
+	};
+	oBtn2.onclick=function(){
+		oV.pause();
+	};
+	oBtn3.onclick=function(){
+		oV.pause();//t停止的功能是这样实现的，先暂停，然后让当前时间为0
+		oV.currentTime=0;
+	};
+	oV.ontimeupdate=function(){//新的事件，
+		oS.innerHTML=time2min(oV.currentTime)+'/'+time2min(oV.duration);
+							//当前播放时间               视频总时间
+		var scale = oV.currentTime/oV.duration;
+		oBar.style.width = scale*oBarBox.offsetWidth+'px';//改变bar的宽度
+		oBarBtn.style.left = scale*(oBarBox.offsetWidth-oBarBtn.offsetWidth)+'px';
+						//根据比例改变bar_btn的left
+	};
+	oBarBtn.onmousedown=function(ev){
+		var disX = ev.clientX-oBarBtn.offsetLeft;
+		oV.pause();//鼠标按下的时候得停止播放
+		
+		
+
+		function fnMove(ev){
+			var l =ev.clientX-disX;
+				//鼠标移动bar_btn也得移动
+			oBarBtn.style.left = l+'px';
+			//求出bar_btn能一定的比例
+			var scale =l/(oBarBox.offsetWidth-oBarBtn.offsetWidth);
+				//进度条宽度
+			oBar.style.width = scale*oBarBox.offsetWidth+'px';
+				//更改对应的播放时间到当前
+			oV.currentTime = scale*oV.duration;
+				
+		}
+		function fnUp(){
+			removeEvent(document,'mousemove',fnMove);
+			removeEvent(document,'mouseup',fnUp);
+		}
+		addEvent(document,'mousemove',fnMove);
+		addEvent(document,'mouseup',fnUp);
+		ev.preventDefault();
+	};
+
+})();
 
 
 

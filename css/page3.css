@@ -123,8 +123,22 @@ transform:translateZ(-150px) rotateY(0deg) scale(-1,1);}
 #c2 div{ width:100%; margin-top:30px; }
 #c2 canvas{ background: #000;}
 
-
-
+/* 视频 */
+.video{ height:450px; margin-top:60px;}
+.btm{ margin-top:24px;}
+#v1{ position: relative; left:0; top:0;}
+#v1 input{ width:40px; height:25px; text-align: center; border-radius:3px; box-shadow: 2px 2px 3px #000}}
+#btn1{ background: #f90; }
+#btn2{ background: #9f0; }
+#btn3{ background: #f09; }
+#v1 input:active{ box-shadow:inset 2px 2px 2px #000}
+#v1{ width:600px; height:337px;  margin:0 auto;}
+#bar_box{width:500px;height:20px; background:#ccc;  position:absolute; bottom:-20px; left:0;}
+#bar{width:0; height:20px; background:#f90;  position:absolute; top:0; left:0;}
+#bar_btn{width:30px; height:20px; background:#000;  position:absolute; 
+	top:0; left:0; z-index:2; cursor:pointer;}
+#v1 p{ position: absolute; top:0; right:-98px; width:98px;  height:20px; line-height:20px; 
+	text-align:center; background: #eee;}
 
 
 

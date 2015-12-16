@@ -167,6 +167,42 @@ function addWheel(obj,fn){
 
         })();
 
+//nav导航条
+    
+      function nav(iNow){
+        var oNav=document.getElementById('nav');
+        var oBar = document.getElementById('nav_bar');
+        
+        var oUl= oNav.children[1];
+        var aLi=oUl.children;
+        
+        var oA=aLi[iNow].children[0];
+             oA.style.color='#000';
+        oBar.style.left = aLi[iNow].offsetLeft-20+'px';
+        for(var i=0;i<aLi.length-1;i++){
+
+          aLi[i].onmouseover=function(){
+            
+            //oBar.style.left = this.offsetLeft+'px';
+            move1(oBar,this.offsetLeft-20);
+            
+          };
+          aLi[i].onmouseout=function(){
+
+
+            move1(oBar,aLi[iNow].offsetLeft-20);
+          };
+          //点击的时候，获得当前的索引，因为点击以后，鼠标移出的时候要让他回到当前已经点击的地方
+          //循环里面加事件，事件里面使用i,要用封闭空间
+          (function(index){
+            aLi[i].onclick=function(){
+              iNow = index;
+              oA.style.color='#000';
+            };
+          })(i);
+        }
+        
+      }
 addEvent(window,'load',function(){
 
     //顶部时间
@@ -187,40 +223,8 @@ addEvent(window,'load',function(){
       tick();
       setInterval(tick,1000);
     })();
-  	//nav导航条
-    ;(function(){
-      var oNav=document.getElementById('nav');
-      var oBar = document.getElementById('nav_bar');
-      
-      var oUl= oNav.children[1];
-      var aLi=oUl.children;
-      var iNow = 0;
-      var oA=aLi[iNow].children[0];
-           oA.style.color='#000';
-      
-      for(var i=0;i<aLi.length-1;i++){
+  	
 
-        aLi[i].onmouseover=function(){
-          
-          //oBar.style.left = this.offsetLeft+'px';
-          move1(oBar,this.offsetLeft-20);
-          
-        };
-        aLi[i].onmouseout=function(){
-
-
-          move1(oBar,aLi[iNow].offsetLeft-20);
-        };
-        //点击的时候，获得当前的索引，因为点击以后，鼠标移出的时候要让他回到当前已经点击的地方
-        //循环里面加事件，事件里面使用i,要用封闭空间
-        (function(index){
-          aLi[i].onclick=function(){
-            iNow = index;
-            oA.style.color='#000';
-          };
-        })(i);
-      }
-    })();
 /*----------------------------*/
 /*返回顶部*/
     ;(function(){
