@@ -36,7 +36,7 @@ addEvent(window,'load',function(){
 		var top=false;
 		var bottom=false;
 
-		document.onmousedown=function(ev){
+		addEvent(document,'mousedown',function(ev){
 			var disX=ev.clientX-y;
 			var disY=ev.clientY-x;
 			
@@ -54,7 +54,8 @@ addEvent(window,'load',function(){
 			addEvent(document,'mousemove',fnMove);
 			addEvent(document,'mouseup',fnUp);
 			ev.preventDefault();
-		};
+		});
+			
 		
 		addEvent(document,'keydown',function(ev){
 			switch(ev.keyCode){
@@ -103,16 +104,16 @@ addEvent(window,'load',function(){
 		addEvent(document,'keyup',function(ev){
 			switch(ev.keyCode){
 				case 37:
-				left=true;
+				left=false;
 					break;
 				case 38:
-				top=true;
+				top=false;
 					break;
 				case 39:
-				right=true;
+				right=false;
 					break;
 				case 40:
-				bottom=true;
+				bottom=false;
 					break;
 			}
 			ev.preventDefault();
