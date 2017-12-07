@@ -180,17 +180,14 @@ function addWheel(obj,fn){
              oA.style.color='#000';
         oBar.style.left = aLi[iNow].offsetLeft-20+'px';
         for(var i=0;i<aLi.length-1;i++){
-
           aLi[i].onmouseover=function(){
-            
             //oBar.style.left = this.offsetLeft+'px';
             move1(oBar,this.offsetLeft-20);
-            
+            this.children[0].style.color='#000';
           };
           aLi[i].onmouseout=function(){
-
-
             move1(oBar,aLi[iNow].offsetLeft-20);
+            this.children[0].style.color='#fff';
           };
           //点击的时候，获得当前的索引，因为点击以后，鼠标移出的时候要让他回到当前已经点击的地方
           //循环里面加事件，事件里面使用i,要用封闭空间
