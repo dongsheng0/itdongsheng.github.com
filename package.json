@@ -1,0 +1,27 @@
+{
+  "name": "itdongsheng.github.com",
+  "version": "1.0.0",
+  "description": "my personal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itdongsheng/itdongsheng.github.com.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itdongsheng/itdongsheng.github.com/issues"
+  },
+  "homepage": "https://github.com/itdongsheng/itdongsheng.github.com#readme",
+  "devDependencies": {
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-uglifycss": "^1.0.9"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}
